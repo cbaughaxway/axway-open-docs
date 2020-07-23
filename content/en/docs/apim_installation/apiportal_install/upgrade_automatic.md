@@ -9,11 +9,13 @@ This section does not describe how to upgrade API Gateway. For information on up
 
 ## Upgrade prerequisites
 
-Before you upgrade, complete the following prerequisites. These prerequisites apply for all installations: software installation and Docker containers.
+Before you upgrade, complete the following prerequisites. These prerequisites apply for both software installation and Docker containers installation.
 
 * If you intend to use the EasyBlog and EasyDiscuss plugins, you must install them before you start the upgrade. For more details, see [Install API Portal](/docs/apim_installation/apiportal_install/install_software/).
 * Stop and back up the existing API Portal files and database. There is no option to roll back after you start the upgrade.
 * To back up an API Portal software installation, perform a file system backup and export the database.
+
+{{< alert title="Note" color="primary" >}} Currently, API Portal upgrade from CentOS 7 to CentOS 8 is not supported. You can only apply a clean install on CentOS 8. {{< /alert >}}
 
 ## Upgrade API Portal
 
