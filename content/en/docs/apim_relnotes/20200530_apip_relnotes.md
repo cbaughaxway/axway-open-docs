@@ -124,6 +124,12 @@ Changing the API Portal language to Arabic (or any other right to left language)
 
 Related Issue: IAP-308
 
+### API Portal label is shown in header when upgrading from version 7.6.2
+
+Upgrading API Portal from 7.6.2 to 7.7 May release might result in scenario where additional text of 'API Portal' is displayed in the header.
+
+Related issue: IAP-3419. Fixed in the 7.7 July release.
+
 ## Documentation
 
 This section describes documentation enhancements and related documentation.

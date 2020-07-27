@@ -1,7 +1,7 @@
 {
 "title": "Upgrade from API Gateway 7.5.x or 7.6.x",
 "linkTitle": "Upgrade from API Gateway 7.5.x or 7.6.x",
-"weight": 2,
+"weight": 20,
 "date": "2019-10-07",
 "description": "Upgrade from API Gateway 7.5.1 or later to API Gateway 7.7."
 }

@@ -1,7 +1,7 @@
 {
 "title": "Cassandra settings in Policy Studio",
 "linkTitle": "Cassandra settings",
-"weight":"04",
+"weight":"50",
 "date": "2019-10-14",
 "description": "Configure settings for the external Apache Cassandra database in Policy Studio."
 }

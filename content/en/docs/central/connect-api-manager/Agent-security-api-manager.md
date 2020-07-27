@@ -92,7 +92,13 @@ The agents are configured to use a TLS-encrypted HTTP connection by default. Cus
 
 The agents use HTTPS connections to its API servers for communication between a running agent, the API Manager, AWS API Gateway, or AMPLIFY Central. The Traceability Agents also use the Lumberjack protocol over TCP to communicate to the AMPLIFY search logs service.
 
-Authentication to the servers is enforced through tokens, username/password, or public/private keys, depending upon what is required by the particular server. All JWT tokens and private keys and secrets stay within the environment of the agent. Public keys are registered in AMPLIFY Central. Configuration details for these settings can be found at [Discovery Agent variables](/docs/central/discovery-agent-variables/) and [Traceability Agent variables](docs/central/connect-api-manager/traceability-agent-variables/). For the AWS API Gateway Discovery and Traceability agents, the configuration details are at [Deploy your agents](/docs/central/connect-aws-gateway/deploy-your-agents-1).
+Authentication to the servers is enforced through tokens, username/password, or public/private keys, depending upon what is required by the particular server. All JWT tokens and private keys and secrets stay within the environment of the agent. Public keys are registered in AMPLIFY Central. Configuration details for these settings can be found at [Discovery Agent variables](/docs/central/connect-api-manager/discovery-agent-variables/) and [Traceability Agent variables](/docs/central/connect-api-manager/traceability-agent-variables/). For the AWS API Gateway Discovery and Traceability agents, the configuration details are at [Deploy your agents](/docs/central/connect-aws-gateway/deploy-your-agents-1/).
+
+## Agent configuration file: securing the user passwords
+
+The agents are using credentials (username/password) to access the API Manager system. By default, the username and password are stored in clear text inside the agent configuration files.</br>
+
+In order to remove them from the agent configuration file, you can export environment variables (`APIMANAGER_AUTH_USERNAME` / `APIMANAGER_AUTH_PASSWORD` for connecting API Manager, `APIGATEWAY_AUTH_USERNAME` / `APIGATEWAY_AUTH_PASSWORD` for connecting Node Manager) with their respective values and remove them from the agent configuration file. When starting the agent, it will look for these environment variables instead of the value in the file. The environment variables take precedence over any values present in configuration file.
 
 ## Agent security scans
 

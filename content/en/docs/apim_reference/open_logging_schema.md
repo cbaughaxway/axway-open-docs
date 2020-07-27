@@ -1,7 +1,7 @@
 {
     "title": "Open logging schema",
     "linkTitle": "Open logging schema",
-    "weight":"0",
+    "weight":"120",
     "date": "2019-10-14",
     "description": "Describes the JSON schema for open logging."
 }

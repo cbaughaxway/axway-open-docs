@@ -7,7 +7,6 @@ description: Learn how to deploy your Discovery Agent and Traceability Agent so
   that you can manage  your Axway API Gateway environment within AMPLIFY
   Central.
 ---
-
 ## Before you start
 
 * Read [AMPLIFY Central and Axway API Manager connected overview](/docs/central/connect-api-manager/)
@@ -110,9 +109,9 @@ apimanager:
 
 This section connects the agent to AMPLIFY Central and determines how to published the discovered APIs.
 
-`url`: The AMPLIFY Central url. Default value is **<https://apicentral.axway.com>**
+`url`: The AMPLIFY Central url. Default value is **<https://apicentral.axway.com>**.
 
-`platformURL:` The AMPLIFY platform url. Needed for finding the user email during the subscription process with email notification. Default value is **<https://platform.axway.com>**
+`platformURL:` The AMPLIFY platform url. Needed for finding the user email during the subscription process with email notification. Default value is **<https://platform.axway.com>**.
 
 `teamID`: The Team identifier in AMPLIFY Central that all APIs will be linked. Locate this at AMPLIFY Central > Access > Team Assets. Open the teams details. The team identifier is the last part of the url (AMPLIFY URL/access/teams/detail/**e4ec6c1a69fd0b8e016a0bb0681e0e8f**).
 
@@ -124,11 +123,11 @@ This section connects the agent to AMPLIFY Central and determines how to publish
 
 `mode`: The method to send endpoints back to Central. (publishToEnvironment = API Service, publishToCatalog = Catalog, publishToEnvironmentAndCatalog = API Service and as Consumer instance).  
 
-`pollInterval`: The frequency the agent is polling AMPLIFY Central to get some event. Default value is **30s**
+`pollInterval`: The frequency the agent is polling AMPLIFY Central to get some event. Default value is **30s**.
 
-`auth.url`: The AMPLIFY login URL. Default value is **<https://login.axway.com/auth>**
+`auth.url`: The AMPLIFY login URL. Default value is **<https://login.axway.com/auth>**.
 
-`auth.realm`: The Realm used to authenticate for AMPLIFY Central. Default value is **Broker**
+`auth.realm`: The Realm used to authenticate for AMPLIFY Central. Default value is **Broker**.
 
 `auth.clientId`: The Client ID of the Service Account (DOSA_....) you created when [preparing AMPLIFY Central](/docs/central/connect-api-manager/prepare-amplify-central/). Locate this at AMPLIFY Central > Access > Service Accounts.
 
@@ -138,7 +137,7 @@ This section connects the agent to AMPLIFY Central and determines how to publish
 
 `auth.keyPassword`: The key password to open the key. None set up by default.
 
-`auth.timeout`: Timeout for the authentication. Default value is **10s**
+`auth.timeout`: Timeout for the authentication. Default value is **10s**.
 
 Once all data is gathered, this section should look like:
 
@@ -178,7 +177,11 @@ The SMTP Notification section defines how the agent manages email settings for s
 
 `subscribe.subject`: Subject of the email notification for action subscribe. Default is **Subscription Notification**.
 
-`subscribe.body`: Body of the email notification for action subscribe. Default is **Subscription created for Catalog Item:  {catalogItem} Subscription key: {subscriptionKey}**.
+`subscribe.body`: Body of the email notification for action subscribe. Default is **Subscription created for Catalog Item:  {catalogItem} {authtemplate}**.
+
+`subscribe.oauth:` Body of the email notification for action subscribe on OAuth authorization is **Your API is secured using OAuth token. You can obtain your token using grant_type=client_credentials with the following client_id={clientID} and client_secret={clientSecret}**.
+
+`subscribe.apikeys`: Body of the email notification for action subscribe on APIKey authorization is **Your API is secured using an APIKey credential:header:{keyHeaderName}/value:{key}**.
 
 `unsubscribe.subject`: Subject of the email notification for action unsubscribe. Default is **Subscription Removal Notification**.
 
@@ -196,9 +199,9 @@ The SMTP Notification section defines how the agent manages email settings for s
 
 The webhook Notification section defines how the agent manages to send notifications to a webhook URL.
 
-`url`: url where the webhook server is defined
+`url`: url where the webhook server is defined.
 
-`headers`: information used to verify the webhook. Provided by the customer, and may include such information as contentType and Authorization
+`headers`: information used to verify the webhook. Provided by the customer, and may include such information as contentType and Authorization.
 
 Both webhook and smtp  sections can be configured at the same time.  The agent will attempt the subscription notifications that are set in the agent config.
 
@@ -207,8 +210,8 @@ Once all data is gathered, this section should look like this for subscription N
 ```
 subscriptions:
   webhook:
-    url: https://prod.cloud-elements.com/elements/webhook-v1/mywebhook
-    headers: Header=contentType,Value=application/json, Header=Elements-Formala-Instance-Id,Value=5551212, Header=Authorization,Value=UserF+rYQSfu0w5yIa5q7uNs2MKYcifk8pYpgAUwJtXFnzc=, Organization a171385jbbde8f54f4f55ff8c3bd8bfe
+    url:
+    headers:
   smtp:
     host: mail.outlook.com
     port: 25
@@ -218,8 +221,10 @@ subscriptions:
     subscribe:
       subject: Subscription Notification
       body: |
-        Subscription created for Catalog Item:  <a href= ${catalogItemUrl}> ${catalogItemName} </a> <br/>
-        Subscription key: <b>${key}</b>
+          Subscription created for Catalog Item:  <a href= ${catalogItemUrl}> ${catalogItemName} </a> <br/>
+          ${authtemplate}<br/>
+      oauth: Your API is secured using OAuth token. You can obtain your token using grant_type=client_credentials with the following client_id=<b>${clientID}</b> and client_secret=<b>${clientSecret}</b>
+      apikeys: Your API is secured using an APIKey credential:header:<b>${keyHeaderName}</b>/value:<b>${key}</b>
     unsubscribe:
       subject: Subscription Removal Notification
       body: |
@@ -238,13 +243,13 @@ subscriptions:
 
 The log section defines how the agent is managing its logs.
 
-`level`: The log level for output messages (debug, info, warn, error). Default value is **info**
+`level`: The log level for output messages (debug, info, warn, error). Default value is **info**.
 
-`format`: The format to print log messages (json, line, package). Default value is **json**
+`format`: The format to print log messages (json, line, package). Default value is **json**.
 
-`output`: The output for the log lines (stdout, file, both). Default value is **stdout**
+`output`: The output for the log lines (stdout, file, both). Default value is **stdout**.
 
-`path`: The path (relative to the agent binary or absolute) to save logs files, if output type file or both. Default value is relative path **logs**
+`path`: The path (relative to the agent binary or absolute) to save logs files, if output type file or both. Default value is relative path **logs**.
 
 Once all data is gathered, this section should look like:
 
@@ -293,8 +298,8 @@ central:
 
 subscriptions:
   webhook:
-    url: https://prod.cloud-elements.com/elements/webhook-v1/mywebhook
-    headers: Header=contentType,Value=application/json, Header=Elements-Formala-Instance-Id,Value=5551212,  Header=Authorization,Value=UserF+rYQSfu0w5yIa5q7uNs2MKYcifk8pYpgAUwJtXFnzc=, Organization a171385jbbde8f54f4f55ff8c3bd8bfe
+    url:
+    headers:
   smtp:
     host: mail.outlook.com
     port: 25
@@ -304,8 +309,10 @@ subscriptions:
     subscribe:
       subject: Subscription Notification
       body: |
-        Subscription created for Catalog Item:  <a href= ${catalogItemUrl}> ${catalogItemName} </a> <br/>
-        Subscription key: <b>${key}</b>
+          Subscription created for Catalog Item:  <a href= ${catalogItemUrl}> ${catalogItemName} </a> <br/>
+          ${authtemplate}<br/>
+      oauth: Your API is secured using OAuth token. You can obtain your token using grant_type=client_credentials with the following client_id=<b>${clientID}</b> and client_secret=<b>${clientSecret}</b>
+      apikeys: Your API is secured using an APIKey credential:header:<b>${keyHeaderName}</b>/value:<b>${key}</b>
     unsubscribe:
       subject: Subscription Removal Notification
       body: |
@@ -346,7 +353,7 @@ To stop your agent, press Ctrl+C within the shell.
 
 #### Execute Discovery Agent in Background
 
-When executing in the background, it is best to save your logging to a file rather than the console output. See [Customizing log section (log)](#customizing-log-section-\(log\)) above.
+When executing in the background, it is best to save your logging to a file rather than the console output. See [Customizing log section (log)](#customizing-log-section-log) above.
 
 Open a shell and run the following command to start up your agent:
 
@@ -371,7 +378,7 @@ kill 13186
 
 #### Execute Discovery Agent as a Service
 
-The agent can be installed as a Linux service, with systemd. The following commands will help you utilize the service. These commands install the service abilities and must be run as a root user.
+The agent can be installed as a Linux service with systemd. The following commands will help you utilize the service. These commands install the service abilities and must be run as a root user.
 
 To install the service to execute with user axway and group axway:
 
@@ -443,6 +450,7 @@ The agent can run in the following modes:
     * Default: located in the same directory as the agent binary.
     * Optional: use a dedicated folder where the configuration file is located (use the --path.config flag in the agent command line to access the file path).
     * Advanced configuration: properties inside the configuration file can reference environment variables. This enables you to set up only one configuration file that addresses different behaviors (depending on the environment variables). See [Discovery Agent variables](/docs/central/connect-api-manager/discovery-agent-variables/).
+
 * With command line argument. See [Traceability Agent flags](/docs/central/connect-api-manager/traceability-agent-flags/).
 
 ### Installing the Traceability Agent
@@ -511,9 +519,9 @@ traceability_agent:
 
 This section describes where the logs should be sent on AMPLIFY Central.
 
-`hosts`: The URL of the logstash to forward the transaction log entries. Default value is **ingestion-lumberjack.datasearch.axway.com:453**
+`hosts`: The URL of the logstash to forward the transaction log entries. Default value is **ingestion-lumberjack.datasearch.axway.com:453**.
 
-`cipher_suites`: List the cipher suites for the TLS connectivity. See the [SSL / TLS advanced](/docs/central/connect-api-manager/ssl-tls-advanced/) topic for more information
+`cipher_suites`: List the cipher suites for the TLS connectivity. See the [SSL / TLS advanced](/docs/central/connect-api-manager/ssl-tls-advanced/) topic for more information.
 
 `proxy_url`: The URL for the proxy for logstash (**socks5://username:password@hostname:port**) to use when the API Management eco-system is not allowed to access the internet world where AMPLIFY Central is installed. **username** and **password** are optional and can be omitted if not required by the proxy configuration. Leaving this value empty means that no proxy will be used to connect to AMPLIFY Central logstash.
 
@@ -542,17 +550,17 @@ output.traceability:
 
 This section connects the agent to AMPLIFY Central and determine how to published the discovered APIs.
 
-`url`: The amplify central url. Default value is **<https://apicentral.axway.com>**
+`url`: The amplify central url. Default value is **<https://apicentral.axway.com>**.
 
 `tenantID`: The Organization ID from AMPLIFY Central. Locate this at Platform > User > Organization > ORrg ID field.
 
-`deployment`: The APIC deployment environment. Default value is **prod**
+`deployment`: The APIC deployment environment. Default value is **prod**.
 
 `environment`: The environment name you created when [preparing AMPLIFY Central](/docs/central/connect-api-manager/prepare-amplify-central/).
 
-`auth.url`: The AMPLIFY login URL. Default value is **<https://login.axway.com/auth>**
+`auth.url`: The AMPLIFY login URL. Default value is **<https://login.axway.com/auth>**.
 
-`auth.realm`: The Realm used to authenticate for AMPLIFY Central. Default value is **Broker**
+`auth.realm`: The Realm used to authenticate for AMPLIFY Central. Default value is **Broker**.
 
 `auth.clientId`: The name of the Service Account you created when [preparing AMPLIFY Central](/docs/central/connect-api-manager/prepare-amplify-central/). Locate this at AMPLIFY Central > Access > Service Accounts.
 
@@ -562,7 +570,7 @@ This section connects the agent to AMPLIFY Central and determine how to publishe
 
 `auth.keyPassword`: The key password to open the key. None set up by default.
 
-`auth.timeout`: Timeout for the authentication. Default value is **10s**
+`auth.timeout`: Timeout for the authentication. Default value is **10s**.
 
 `proxy_url`: The URL for the proxy for Amplify Central `<http://username:password@hostname:port>`. If empty, no proxy is defined.
 
@@ -600,11 +608,11 @@ This section helps the agent to collect the header from request/response from th
 
 `getHeaders`: Tells the agent to  call the API Gateway API to get additional transaction details (headers). Default value is **true**. If false, API Gateway config does not need to be set and no headers will be send to AMPLIFY Central.
 
-`host`: The host that Axway API Gateway is running on. Default value is **localhost**
+`host`: The host that Axway API Gateway is running on. Default value is **localhost**.
 
-`port`: The port that Axway API Gateway is listening on. Default value is **8090**
+`port`: The port that Axway API Gateway is listening on. Default value is **8090**.
 
-`pollInterval`: The frequency in which the agent polls the logs in us, ms, s, m, h. Default value is **1m**
+`pollInterval`: The frequency in which the agent polls the logs in us, ms, s, m, h. Default value is **1m**.
 
 `auth.username`: An Axway API Gateway username with the "API Gateway operator" role.
 
@@ -642,7 +650,7 @@ This section tells the agent which API needs to be monitor: one that has been di
 
 `pollInterval`: The frequency in which API Manager is polled for new endpoints. Default value is 30s.
 
-`apiVersion`: The API Manager API version to use. Default value is **1.3**
+`apiVersion`: The API Manager API version to use. Default value is **1.3**.
 
 `proxyApicIDField` (optional): The field name used to store the AMPLIFY Central identifier for the front-end proxy in API Manager. Default value is **apicId**. If you do not intend to change it, comment this property. Be aware that the field will not be visible in the API Manager front-end proxy, as it is a specific configuration. If you want to see that field or customize it, refer to Add a custom property to APIs in [Customize API Manager](/docs/apim_administration/apimgr_admin/api_mgmt_custom/index.html#customize-api-manager-data) documentation.
 
@@ -686,7 +694,7 @@ The log section defines how the agent manages its logs.
 
 `to_file`:  (alternate configuration) The output is logged into a file. Requires more configuration (refer to <https://www.elastic.co/guide/en/beats/filebeat/current/configuration-logging.html>).
 
-`level`: The log level for output messages (debug, info, warn, error). Default value is **info**
+`level`: The log level for output messages (debug, info, warn, error). Default value is **info**.
 
 Once all data is gathered, this section should look like this for standard output logging:
 
@@ -823,7 +831,7 @@ To stop your agent, press Ctrl+C within the shell.
 
 #### Execute Traceability Agent in Background
 
-When executing in the background, it is best to save your logging to a file rather than the console output. See [Customizing log section (log)](#customizing-log-section-\(logging\)) above.
+When executing in the background, it is best to save your logging to a file rather than the console output. See [Customizing log section (logging)](#customizing-log-section-logging) above.
 
 Open a shell and run the following command to start up your agent:
 
@@ -860,7 +868,6 @@ sudo ./traceability_agent service install -u axway -g axway
 To start the service:
 
 ```shell
-
 cd /home/APIC-agents
 sudo ./traceability_agent service start
 ```
