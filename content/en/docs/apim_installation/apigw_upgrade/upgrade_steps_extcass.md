@@ -196,8 +196,8 @@ When all steps have completed successfully, the new API Gateway version 7.7 proc
 ### Step 5 - Run `update-apimanager`
 
 The `update-apimanager` script must be executed now if any of the following Products are installed:
-* API Manager
-* Client App Registry
+    * API Manager.
+    * Client App Registry
 
 This script updates the active deployment in the product group. After running the script, you must recreate the product project (common project, containing Server Settings) from the deployment, so that you will not need to revert the changes the next time you perform a project deployment.
 
