@@ -195,16 +195,15 @@ When all steps have completed successfully, the new API Gateway version 7.7 proc
 
 ### Step 5 - Run `update-apimanager`
 
-The `update-apimanager` script must be executed now if any of the following Products are installed:
+Run the `update-apimanager` script if any of the following products are installed:
 
-* API Manager.
-* Client App Registry.
+* API Manager
+* Client App Registry
 
 This script updates the active deployment in the product group. After running the script, you must recreate the product project (common project, containing Server Settings) from the deployment, so that you will not need to revert the changes the next time you perform a project deployment.
 
 As an alternative to recreating the product project, you can deploy only your common project to a development server and run the `update-apimanager` script against it, and then create a new common project from this API Gateway instance. Finally, you must deploy your updated policies to your application group.
 
-By default, if no '--productname' option is provided, the `update-apimanager` script will update API Manager.
 You can run this command once at the API Gateway group level, instead of on every API Gateway instance, for example:
 
 ```
@@ -219,7 +218,7 @@ The following command shows an example of running the `update-apimanager` script
 /opt/Axway-7.7/apigateway/posix/bin/update-apimanager --username=admin --password=MY_PASSWORD --group=API_MGR_GROUP   --productname=clientappreg
 ```
 
-If the API Gateway group is protected by a passphrase, you must append the command with `--passphrase=API_MGR_GROUP_PASSPHRASE`.
+If you do not specify the `--productname` option, the script updates API Manager.
 
 ### Step 6 - Verify the upgrade
 
