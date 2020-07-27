@@ -18,9 +18,29 @@ API Portal is available as a software installation or a virtualized deployment i
 
 ## New features and enhancements
 
-No new features and enhancements are available in this update.
+### Non-root installer​
 
-<!-- Add the new features here -->
+To expand compliance with many customers internal security guidelines, which discourage or disallow root access, we have added the ability to install and run API Portal using `sudo` commands.​ To learn more, watch [How to install API Portal without being a root user](https://www.youtube.com/watch?v=H5RZjP9Zl7k&list=PLSlCpG9zsECpo8-JMZ2Cx4REDyUvpwy9v)​.
+
+### Easy upgrade from 7.5.x and 7.6.x​
+
+With end of support for API Portal 7.5 and 7.6 looming in November 2020, we were looking at ways to help customers make the jump to the latest 7.7 update.​
+
+The `/path/placeholder.js` is a cumulative script that you can use to upgrade an environment from 7.5.x or 7.6.x to the latest 7.7 update​.
+
+### CentOS 8​ support
+
+We have expanded official support to include CentOS 8 for the standalone (non-docker) installation of API Portal. ​
+
+Supporting CentOS8 in a docker container is not yet supported.​
+
+### UI/UX improvements
+
+User interface (UI) and user experience (UX) improvements in this release:
+
+* Better filtering options available to **User** roles on the applications catalog to allow easier searching and management of large catalogs​.
+* New API state indicators for *Published* and *Unpublished* to make the current status of the endpoint clearer.
+* Improved visibility of *Deprecated* APIs​.
 
 ## Limitations of this update
 
@@ -57,13 +77,13 @@ This version of API Portal includes:
 
 | Internal ID | Case ID | CVE Identifier | Description                            |
 | ----------- | ------- | -------------- | -------------------------------------- |
-| IAP-XXXXX | XXXXXXX |                | **Issue**: TODO. **Resolution**: TODO. |
+| IAP-XXXXX   | XXXXXXX |                | **Issue**: TODO. **Resolution**: TODO. |
 
 ### Other fixed issues
 
 | Internal ID | Case ID | Description                            |
 | ----------- | ------- | -------------------------------------- |
-| IAP-XXXXX | XXXXXXX | **Issue**: TODO. **Resolution**: TODO. |
+| IAP-XXXXX   | XXXXXXX | **Issue**: TODO. **Resolution**: TODO. |
 
 ## Known issues
 
