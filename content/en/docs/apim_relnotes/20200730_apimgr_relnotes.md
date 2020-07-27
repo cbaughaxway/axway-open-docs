@@ -210,6 +210,7 @@ Download and unpack the API Gateway 7.7 Policy Studio Update file into a new dir
 mkdir 77update
 tar -xzvf APIGateway_7.7.YYYYMMDD_PolicyStudio_linux-x86-64_BNnn.tar.gz -C 77update
 ```
+**Note** For installations running on Windows 7, the Policy Studio update will need to be manually unzipped.
 
 {{< alert title="Note" color="primary" >}}You must extract the file into a new directory and not into the existing API Gateway installation directory.
 
@@ -254,6 +255,8 @@ Download and unpack the API Gateway 7.7 Configuration Studio Update file into a 
 mkdir 77update
 tar -xzvf APIGateway_7.7.YYYYMMDD_ConfigurationStudio_linux-x86-64_BNnn.tar.gz -C 77update
 ```
+**Note** For installations running on Windows 7, the Configuration Studio update will need to be manually unzipped.
+
 
 {{< alert title="Note" color="primary" >}}You must extract the file into a new directory and not into the existing API Gateway installation directory.
 
