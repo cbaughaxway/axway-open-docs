@@ -211,11 +211,13 @@ mkdir 77update
 tar -xzvf APIGateway_7.7.YYYYMMDD_PolicyStudio_linux-x86-64_BNnn.tar.gz -C 77update
 ```
 
-**Note** For installations running on Windows 7, the Policy Studio update will need to be manually unzipped.
+{{< alert title="Note" color="primary" >}}
+You must extract the file into a new directory and not into the existing API Gateway installation directory.
 
-{{< alert title="Note" color="primary" >}}You must extract the file into a new directory and not into the existing API Gateway installation directory.
+You must also remove the files `libeay32.dll` and `ssleay32.dll` if they exist in the directory `INSTALL_DIR/policystudio`.
 
-You must also remove the files `libeay32.dll` and `ssleay32.dll` if they exist in the directory `INSTALL_DIR/policystudio`. {{< /alert >}}
+For installations running on Windows 7, you must manually unzip the Policy Studio update.
+{{< /alert >}}
 
 Run the `update_policy_studio.sh` script from the directory into which you extracted the Update file (for example, `77update`) and specify your API Gateway installation directory as an argument:
 
@@ -257,11 +259,13 @@ mkdir 77update
 tar -xzvf APIGateway_7.7.YYYYMMDD_ConfigurationStudio_linux-x86-64_BNnn.tar.gz -C 77update
 ```
 
-**Note** For installations running on Windows 7, the Configuration Studio update will need to be manually unzipped.
+{{< alert title="Note" color="primary" >}}
+You must extract the file into a new directory and not into the existing API Gateway installation directory.
 
-{{< alert title="Note" color="primary" >}}You must extract the file into a new directory and not into the existing API Gateway installation directory.
+You must also remove the files `libeay32.dll` and `ssleay32.dll` if they exist in the directory `INSTALL_DIR/configurationstudio`.
 
-You must also remove the files `libeay32.dll` and `ssleay32.dll` if they exist in the directory `INSTALL_DIR/configurationstudio`.{{< /alert >}}
+For installations running on Windows 7, you must manually unzip the Configuration Studio update.
+{{< /alert >}}
 
 Run the `update_configuration_studio.sh` script from the directory into which you extracted the Update file (for example, `77update`) and specify your API Gateway installation directory as an argument:
 
